@@ -335,3 +335,75 @@ print("done in %0.3fs" % (time() - t0))
 # The chance level is the accuracy that will be reached when constantly predicting the majority class.
 print("Chance level : %s" % max(np.mean(y), 1. - np.mean(y)))
 print("Accuracy : %s" % clf.score(X_test, y_test))
+
+#%%
+random.seed(5723)
+
+# Visualisation qualitative
+prediction_titles = [title(y_pred[i], y_test[i], names)
+                     for i in range(y_pred.shape[0])]
+plot_gallery(images_test, prediction_titles)
+plt.show()
+
+# Visualisation des coefficients
+plt.figure()
+plt.imshow(np.reshape(clf.coef_[0], (h, w)))
+plt.colorbar(label="Coefficient weight")
+plt.title("Coefficient map du SVM linéaire (meilleur C)")
+plt.show()
+
+#%%
+# Q5
+random.seed(5723) 
+
+def run_svm_cv(_X, _y):
+    # Split the dataset into training and testing halves (random permutation)
+    _indices = np.random.permutation(_X.shape[0])
+    _train_idx, _test_idx = _indices[:_X.shape[0] // 2], _indices[_X.shape[0] // 2:]
+    _X_train, _X_test = _X[_train_idx, :], _X[_test_idx, :]
+    _y_train, _y_test = _y[_train_idx], _y[_test_idx]
+
+    # Grid search with linear SVM over a small set of C values
+    _parameters = {'kernel': ['linear'], 'C': list(np.logspace(-3, 3, 5))}
+    _svr = svm.SVC()
+    _clf_linear = GridSearchCV(_svr, _parameters, n_jobs=-1)
+    _clf_linear.fit(_X_train, _y_train)
+
+    # Print generalization scores (train and test)
+    print('Generalization score for linear kernel: %s, %s \n' %
+          (_clf_linear.score(_X_train, _y_train), _clf_linear.score(_X_test, _y_test)))
+
+print("Score without nuisance variables")
+
+# Evaluate baseline performance on the original features
+run_svm_cv(X, y)
+
+print("Score with nuisance variables")
+n_features = X.shape[1]
+
+# Add 300 Gaussian noise features (random nuisance variables)
+sigma = 1
+noise = sigma * np.random.randn(n_samples, 300) 
+# with gaussian coefficients of std sigma
+X_noisy = np.concatenate((X, noise), axis=1)
+
+# Shuffle rows to avoid correlations
+X_noisy = X_noisy[np.random.permutation(X.shape[0])]
+
+# Evaluate performance with noisy features included
+run_svm_cv(X_noisy, y)
+
+#%%
+# Q6
+random.seed(5723)
+print("Score after dimensionality reduction")
+n_components = 10  # we experimented with 5, 20, 50, 100
+
+# Apply PCA
+pca = PCA(n_components=n_components).fit(X_noisy)
+X_noisy_pca = pca.fit_transform(X_noisy)
+
+# Evaluate linear SVM on the PCA-reduced noisy data
+run_svm_cv(X_noisy_pca, y)
+
+# %%
