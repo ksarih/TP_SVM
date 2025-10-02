@@ -62,24 +62,24 @@ un rapport rédigé en LaTeX dans rapport/rapport.tex.
 1. Cloner le projet :
 
 Sous WSL, commencez par cloner le projet et entrez dans le dossier :
-
+```bash
 git clone https://github.com/ksarih/TP_SVM.git
 cd TP_SVM
-
+```
 2. Installer les dépendances :
-
+```bash
 pip install -r requirements.txt
-
+```
 3. Lancer le code Python :
-
+```bash
 cd code
 python svm_script.py
-
+```
 4. Compiler le rapport LaTeX :
-
+```bash
 cd rapport
 latexmk -pdf -shell-escape rapport.tex
-
+```
 
 Le fichier rapport.pdf sera généré dans le dossier rapport/.
 
