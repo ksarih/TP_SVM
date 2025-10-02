@@ -1,0 +1,53 @@
+# Dépendances pour Python 
+numpy
+scikit-learn
+matplotlib
+pandas
+seaborn
+joblib
+
+# Dépendance pour GUI 
+tkinter
+
+# Fichiers requis pour compiler rapport.tex
+# Compiler avec pdfLaTeX et latexmk
+
+latexmk
+texlive-latex-base
+texlive-latex-extra
+texlive-fonts-recommended
+texlive-science
+texlive-latex-recommended
+texlive-pictures
+texlive-xetex
+texlive-luatex
+python3-pygments  # requis pour minted
+
+# Packages LaTeX utilisés dans rapport.tex
+amsmath
+amsthm
+amssymb
+minted
+graphicx
+tocloft
+hyperref
+array
+longtable
+booktabs
+float
+caption
+subcaption
+placeins
+lmodern
+xcolor
+mdframed
+multirow
+multicol
+scrextend
+tikz
+textpos
+colortbl
+geometry
+listings
+verbatim
+
