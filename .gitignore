@@ -1,3 +1,4 @@
+# Archives et binaires
 *.tar
 *.tar.*
 *.jar
@@ -6,12 +7,16 @@
 *.deb
 *.zip
 *.tgz
-*.log
-*.log.*
 *.sig
 
+# Logs
+*.log
+*.log.*
+
+# Répertoires à ignorer
 pkg/
 src/
+
 # Environnement virtuel
 .envtp/
 
@@ -24,5 +29,26 @@ __pycache__/
 *.pyo
 *.pyd
 
-# PDF ou documents locaux (optionnel, à toi de voir)
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Ignorer tous les PDF sauf le rapport principal
 *.pdf
+!rapport/main.pdf
