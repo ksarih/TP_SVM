@@ -51,4 +51,4 @@ __pycache__/
 
 # Ignorer tous les PDF sauf le rapport principal
 *.pdf
-!rapport/main.pdf
+!rapport/rapport.pdf

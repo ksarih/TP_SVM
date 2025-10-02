@@ -34,7 +34,7 @@ TP_SVM/
 │   └── svm_source.py        
 │
 ├── rapport/                
-│   ├── main.pdf            
+│   ├── rapport.pdf            
 │   ├── rapport.tex       
 │   └── images/             
 │       ├── gauss1.png
@@ -51,7 +51,37 @@ TP_SVM/
 
 ---
 
-##  Installation et exécution
+## Installation et exécution
+
+Ce dépôt contient :
+
+un script Python dans code/svm_script.py ;
+
+un rapport rédigé en LaTeX dans rapport/rapport.tex.
+
+1. Cloner le projet :
+
+Sous WSL, commencez par cloner le projet et entrez dans le dossier :
+
+git clone https://github.com/ksarih/TP_SVM.git
+cd TP_SVM
+
+2. Installer les dépendances :
+
+pip install -r requirements.txt
+
+3. Lancer le code Python :
+
+cd code
+python svm_script.py
+
+4. Compiler le rapport LaTeX :
+
+cd rapport
+latexmk -pdf -shell-escape rapport.tex
+
+
+Le fichier rapport.pdf sera généré dans le dossier rapport/.
 
 ---
 
